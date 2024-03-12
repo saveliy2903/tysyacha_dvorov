@@ -1,0 +1,22 @@
+{% extends "hello/base.html" %}
+
+{% block content %}
+<div class="reg_page">
+    <h2 class="reg_header">Регистрация</h2>
+
+    <form method="post">
+      {% csrf_token %}
+
+      {% for f in form %}
+      <p>
+        <label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{f}}
+      </p>
+      <div class="form-error">{{ f.errors }}</div>
+      {% endfor %}
+        <p style="font-size: 12px; color: gray;">Пароль должен содержать не менее 8 символов</p>
+        <p style="font-size: 12px; color: grey;">Пароль не может полностью состоять из цифр</p>
+        <p><input type="checkbox"><label>Я согласен на обработку персональных данных</label></p>
+      <input type="submit" value="Регистрация" class="button">
+    </form>
+</div>
+{% endblock %}

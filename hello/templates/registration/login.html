@@ -1,0 +1,19 @@
+{% extends "hello/base.html" %}
+
+{% block content %}
+<div class="reg_page">
+    <h2 class="reg_header">Авторизация</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% for f in form %}
+            <p>
+                <label class="form-label-log" for="{{ f.id_for_label }}">{{f.label}}: </label> {{f}}
+            </p>
+            <div id="form-error">{{ f.errors }}</div>
+        {% endfor %}
+        <input type="submit" value="Авторизация" class="button">
+    </form>
+</div>
+{% endblock %}

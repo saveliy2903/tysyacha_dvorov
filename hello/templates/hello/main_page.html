@@ -1,0 +1,57 @@
+{% extends "hello/base.html" %}
+{% load static %}
+
+{% block content %}
+
+	<div class="container">
+		<div class="itc-slider" data-slider="itc-slider" data-loop="true" data-autoplay="true" data-interval="15000">
+			<div class="itc-slider-wrapper">
+				<div class="itc-slider-items">
+					<div class="itc-slider-item">
+						<img src="{% static 'hello/images/dvor_1.png' %}" width="800px" height="300px">
+					</div>
+					<div class="itc-slider-item">
+						<img src="{% static 'hello/images/dvor_2.png' %}" width="800px" height="300px">
+					</div>
+					<div class="itc-slider-item">
+						<img src="{% static 'hello/images/dvor_3.png' %}" width="800px" height="300px">
+					</div>
+				</div>
+			</div>
+			<button class="itc-slider-btn itc-slider-btn-prev"></button>
+			<button class="itc-slider-btn itc-slider-btn-next"></button>
+		</div>
+	</div>
+
+    <div class="post-wrap">
+		<!--- ЗАЯВКА --->
+		<div class="post-item">
+			<div class="item-content">
+				<div class="item-icon documents">
+					<i class="fa-solid fa-file-signature fa-2xl" style="color: #464b44;"></i>
+				</div>
+				<div class="item-body">
+					<h3>ОТПРАВИТЬ ЗАЯВКУ</h3>
+				</div>
+				<div class="item-footer">
+					<a href="{% url 'add_applic' %}" class="link"><span>Продолжить</span></a>
+				</div>
+			</div>
+		</div>
+
+		<!--- ХОД РЕАЛИЗАЦИИ --->
+		<div class="post-item">
+			<div class="item-content">
+				<div class="item-icon check">
+					<i class="fa-solid fa-circle-check fa-2xl" style="color: #464b44;"></i>
+				</div>
+				<div class="item-body">
+					<h3>ХОД РЕАЛИЗАЦИИ 1000 ДВОРОВ</h3>
+				</div>
+				<div class="item-footer">
+					<a href="{% url 'view_applic' %}" class="link"><span>Подробнее</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}

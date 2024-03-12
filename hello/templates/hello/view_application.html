@@ -1,0 +1,59 @@
+{% extends "hello/base.html" %}
+{% load static %}
+
+{% block content %}
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Заявка №</th>
+                <th>Кол. МКД</th>
+                <th>Адрес</th>
+                <th>% голосов</th>
+                <th>Кол. жителей</th>
+                <th>Тип благоустройства</th>
+                <th>Дата заявки</th>
+                <th>Кол. очков</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for application in applications %}
+            <tr>
+                <td>{{application.id}}</td>
+                <td>{{application.quantity_MKD}}</td>
+
+                <td>
+                    {% for address in application.address.all %}
+                    {{address.street}} {{address.number}}
+                    <br>
+                    {% endfor %}
+                </td>
+
+                <td>{{application.percentage_of_vote}}</td>
+                <td>{{application.number_people}}</td>
+                <td>
+                    {% for type in application.types.all %}
+                    {{type.name}}
+                    <br>
+                    {% endfor %}
+                </td>
+                <td>{{application.date_create|date:"d-m-Y"}}</td>
+                {% if application.user ==  request.user %}
+                <td>{{application.point}}</td>
+                {% else %}
+                <td>Скрыто</td>
+                {% endif %}
+
+                {% if application.user ==  request.user %}
+                <td><a href="delete/{{application.id}}">удалить</a></td>
+                {% else %}
+                <td></td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

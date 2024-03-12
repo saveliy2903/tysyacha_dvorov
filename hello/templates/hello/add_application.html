@@ -1,0 +1,64 @@
+{% extends "hello/base.html" %}
+
+{% block content %}
+<div class="form_application">
+    <form method="POST">
+        {% csrf_token %}
+
+        <p>
+            <label>Количество МКД объединенных одной дворовой территорией: </label>
+            <input type="number" name="quantity_MKD" min="1" max="10" required/>
+        </p>
+
+        <p>
+            <label class="str">Введите адрес МКД</label>
+            <label class="str1">Если в поле необходимо указать несколько адресов, то они должны разделяться символом ',':</label>
+            <input type="text" name="address" size="100" required placeholder="Новая 2, Новая 4, Зейская 295"/>
+        </p>
+
+        <p>
+            <label>Введите количество жителей: </label>
+            <input type="number" name="number_people" required min="1"/>
+        </p>
+
+        <p>
+            <label>Процент голосов от общего числа собственников: </label>
+            <input type="text" name="percentage_of_vote" size="6" min="0" max="100" required/>
+        </p>
+
+        <p>
+            <label>Введите площадь в м<sup>2</sup>: </label>
+            <input type="text" name="yard_area" required/>
+        </p>
+        {% if messages %}
+        {% for message in messages %}
+        <div role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        <p>
+            <label>Выберите тип благоустройства:</label><br>
+            <div>
+            {% for type in types %}
+                <input type="checkbox" name="types" value="{{type.id}}" />{{ type.name}} <br />
+            {% endfor %}
+            </div>
+        </p>
+
+        <p>
+            <label>Участие в муниципальных программах по благоустройству дворовых территорий</label>
+            <input type="checkbox" name="participation_in_municipal" style="vertical-align: middle;"/>
+        </p>
+        <p>
+            <label class="str">Введите ссылку на дизай-проект от ЦРТ:</label>
+            <input type="text" size="100"/>
+        </p>
+        <p>
+            <label class="str">Введите ссылку на протокол общедомового собрания:</label>
+            <input type="text" size="100"/>
+        </p>
+            <input type="submit" value="Сохранить" class="button">
+    </form>
+</div>
+{% endblock content %}
